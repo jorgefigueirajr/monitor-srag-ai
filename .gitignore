@@ -1,0 +1,27 @@
+# Ambientes Virtuais
+venv/
+env/
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Editores
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# Dados e Bancos de Dados
+data/*.db
+data/*.parquet
+data/*.json
+
+# Imagens
+img/*.png
+
+# Logs 
+logs/
+*.log
