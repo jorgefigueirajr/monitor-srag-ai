@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 import aiofiles
 import logging
+import json
 from bs4 import BeautifulSoup
 from pathlib import Path
 from typing import List, Optional
@@ -13,12 +14,12 @@ logger = logging.getLogger(__name__)
 
 class DataDownloader:
     """
-    Gerencia o processo de download assíncrono de arquivos do OpenDataSUS.
-    Responsável por varrer a página do dataset, identificar arquivos .parquet
-    e baixá-los para o diretório local configurado.
+    Gerencia o processo de download assíncrono de arquivos do Portal de Dados Abertos do SUS.
+    Identifica os arquivos de dados mais recentes disponíveis e realiza o download paralelo 
+    para o diretório local configurado.
     """
 
-    BASE_URL = "https://opendatasus.saude.gov.br"
+    BASE_URL = "https://dadosabertos.saude.gov.br"
     DATASET_URL = f"{BASE_URL}/dataset/srag-2021-a-2024"
     MAX_CONCURRENT_DOWNLOADS = 5
 
@@ -36,45 +37,51 @@ class DataDownloader:
             logger.error(f"Erro ao acessar URL {url}: {e}")
             return None
 
-    async def _get_resource_pages(self, session: aiohttp.ClientSession) -> List[str]:
-        """Identifica os links das páginas de recursos dentro do dataset principal."""
+    async def _extract_parquet_links_from_json(self, session: aiohttp.ClientSession) -> List[str]:
+        """
+        Extrai links diretos de arquivos .parquet lendo o script __NEXT_DATA__ do portal.
+        """
         html = await self._fetch_html(session, self.DATASET_URL)
         if not html:
             return []
 
         soup = BeautifulSoup(html, "html.parser")
-        resource_links = []
         
-        # Seleciona elementos <a> com a classe 'heading' que contêm href
-        for anchor in soup.select("a.heading[href]"):
-            href = anchor["href"]
-            full_link = href if href.startswith("http") else f"{self.BASE_URL}{href}"
-            resource_links.append(full_link)
-
-        logger.info(f"Encontradas {len(resource_links)} páginas de recursos.")
-        return resource_links
-
-    async def _extract_parquet_links(self, session: aiohttp.ClientSession, resource_urls: List[str]) -> List[str]:
-        """Percorre as páginas de recursos e extrai os links diretos para arquivos .parquet."""
-        parquet_links = []
+        # O portal usa Next.js, os dados estão em um JSON dentro desta tag script
+        next_data_tag = soup.find("script", {"id": "__NEXT_DATA__"})
         
-        for url in resource_urls:
-            html = await self._fetch_html(session, url)
-            if not html:
-                continue
+        if not next_data_tag:
+            logger.error("Tag __NEXT_DATA__ não encontrada. A estrutura do site pode ter mudado.")
+            return []
 
-            soup = BeautifulSoup(html, "html.parser")
-            for anchor in soup.find_all("a", href=True):
-                href = anchor["href"]
-                if href.lower().endswith(".parquet"):
-                    full_link = href if href.startswith("http") else f"{self.BASE_URL}{href}"
-                    parquet_links.append(full_link)
-        
-        logger.info(f"Total de arquivos .parquet identificados: {len(parquet_links)}")
-        return parquet_links
+        try:
+            data = json.loads(next_data_tag.string)
+            # Navega no JSON: props -> pageProps -> resources
+            resources = data.get("props", {}).get("pageProps", {}).get("resources", [])
+            
+            parquet_links = []
+            
+            for res in resources:
+                res_format = res.get("format", "").upper()
+                res_url = res.get("url", "")
+                
+                # Filtra apenas arquivos Parquet (pelo formato ou extensão)
+                if res_format == "PARQUET" or res_url.lower().endswith(".parquet"):
+                    parquet_links.append(res_url)
+            
+            logger.info(f"Total de arquivos .parquet identificados via JSON: {len(parquet_links)}")
+            return parquet_links
+
+        except json.JSONDecodeError:
+            logger.error("Erro ao decodificar o JSON do portal.")
+            return []
+        except Exception as e:
+            logger.error(f"Erro inesperado ao extrair links: {e}")
+            return []
 
     async def _download_file(self, session: aiohttp.ClientSession, url: str):
         """Baixa um único arquivo e salva no diretório de dados."""
+        # Extrai o nome do arquivo da URL (ex: INFLUD21-26-06-2025.parquet)
         filename = url.split("/")[-1]
         filepath = self.download_dir / filename
 
@@ -95,18 +102,15 @@ class DataDownloader:
 
     async def run(self):
         """Executa o fluxo completo de extração."""
-        logger.info("Iniciando processo de extração de dados do OpenDataSUS.")
+        logger.info(f"Iniciando extração de dados em: {self.DATASET_URL}")
         
         connector = aiohttp.TCPConnector(limit=self.MAX_CONCURRENT_DOWNLOADS)
         async with aiohttp.ClientSession(connector=connector) as session:
-            resource_pages = await self._get_resource_pages(session)
-            if not resource_pages:
-                logger.warning("Nenhuma página de recurso encontrada. Abortando.")
-                return
-
-            download_links = await self._extract_parquet_links(session, resource_pages)
+    
+            download_links = await self._extract_parquet_links_from_json(session)
+            
             if not download_links:
-                logger.warning("Nenhum arquivo .parquet encontrado para download.")
+                logger.warning("Nenhum arquivo .parquet encontrado. Verifique a URL ou o seletor.")
                 return
 
             tasks = [self._download_file(session, link) for link in download_links]
