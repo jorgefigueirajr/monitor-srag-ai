@@ -1,0 +1,1538 @@
+{
+  "dicionario_de_dados_sivep_gripe": [
+    {
+      "nome_campo_ficha": "Nº",
+      "nome_coluna_dbf": "NU_NOTIFIC",
+      "tipo": "Varchar2(12)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Número do registro [3]. É um número sequencial gerado automaticamente pelo sistema [3]. O padrão utilizado é 320120000123. O Dígito 1 caracteriza o tipo da ficha (1=SG, 2=SRAG-UTI e 3=SRAG Hospitalizado), e os dígitos 2 a 12 formam o número sequencial [3].",
+      "observacoes_e_validacoes": "Gerado automaticamente pelo sistema [3]."
+    },
+    {
+      "nome_campo_ficha": "1-Data do preenchimento da ficha de notificação",
+      "nome_coluna_dbf": "DT_NOTIFIC",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Data de preenchimento da ficha de notificação [3].",
+      "observacoes_e_validacoes": "A data deve ser menor ou igual à data da digitação [3]."
+    },
+    {
+      "nome_campo_ficha": "Semana Epidemiológica do preenchimento da ficha de notificação",
+      "nome_coluna_dbf": "SEM_NOT",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Semana Epidemiológica do preenchimento da ficha de notificação [4].",
+      "observacoes_e_validacoes": "Calculado a partir da data dos Primeiros Sintomas (SS) [4]."
+    },
+    {
+      "nome_campo_ficha": "2-Data de 1ºs sintomas",
+      "nome_coluna_dbf": "DT_SIN_PRI",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Data de 1ºs sintomas do caso [4].",
+      "observacoes_e_validacoes": "A data deve ser menor ou igual à data da digitação e à data do preenchimento da ficha de notificação [4]."
+    },
+    {
+      "nome_campo_ficha": "Semana Epidemiológica dos Primeiros Sintomas",
+      "nome_coluna_dbf": "SEM_PRI",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Semana Epidemiológica do início dos sintomas [5].",
+      "observacoes_e_validacoes": "Calculado a partir da data dos Primeiros Sintomas (SS) [5]."
+    },
+    {
+      "nome_campo_ficha": "3-UF (Notificação)",
+      "nome_coluna_dbf": "SG_UF_NOT",
+      "tipo": "Varchar2(2)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Unidade Federativa onde está localizada a Unidade que realizou a notificação [5]. Utiliza tabela com código e siglas das UF padronizados pelo IBGE [5].",
+      "observacoes_e_validacoes": "O campo é preenchido automaticamente pelo sistema, dependendo do nível do usuário (Unidade, Municipal, Estadual). Se Federal, abre tabela com todas as UFs que possuam unidades cadastradas [5, 6]."
+    },
+    {
+      "nome_campo_ficha": "4-Município Código (IBGE) (Notificação)",
+      "nome_coluna_dbf": "ID_MUNICIP OU CO_MUN_NOT",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Município onde está localizada a Unidade que realizou a notificação [6]. Utiliza tabela com código e nomes dos Municípios padronizados pelo IBGE [6].",
+      "observacoes_e_validacoes": "Preenchendo o nome do município, o código é preenchido automaticamente, e vice-versa [6]. O preenchimento é automático ou habilita a tabela dependendo do nível do usuário [6, 7]."
+    },
+    {
+      "nome_campo_ficha": "Regional de Saúde de Notificação Código (IBGE)",
+      "nome_coluna_dbf": "ID_REGIONA OU CO_REGIONA",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Regional de Saúde onde está localizado o Município que realizou a notificação [7]. Utiliza tabela com código e nomes das Regionais de Saúde padronizados pelo IBGE [7].",
+      "observacoes_e_validacoes": "Preenchendo o nome da regional de saúde de notificação, o código é preenchido automaticamente, e vice-versa [8]. Preenchido automaticamente pelo sistema dependendo do nível do usuário [8]."
+    },
+    {
+      "nome_campo_ficha": "5-Unidade de Saúde Código (CNES)",
+      "nome_coluna_dbf": "ID_UNIDADE OU CO_UNI_NOT",
+      "tipo": "Varchar2(7)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Unidade que realizou o atendimento, coleta de amostra e registro do caso [9]. Utiliza tabela com códigos CNES e nomes das Unidades [9].",
+      "observacoes_e_validacoes": "Preenchendo o nome da unidade, o código é preenchido automaticamente, e vice-versa [9]. O preenchimento/habilitação da tabela depende do nível do usuário (Unidade, Municipal, Estadual ou Federal) [9, 10]."
+    },
+    {
+      "nome_campo_ficha": "6- Tem CPF?",
+      "nome_coluna_dbf": "TEM_CPF",
+      "tipo": "Varchar(1) (1- Sim, 2-Não)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Informar se o paciente notificado dispõe de Número do Cadastro de Pessoa Física (CPF) [10].",
+      "observacoes_e_validacoes": "Se 'Não', é obrigatório o preenchimento do CNS. Para pacientes raça/cor indígenas, somente o CNS é obrigatório [10]."
+    },
+    {
+      "nome_campo_ficha": "7-CPF do paciente",
+      "nome_coluna_dbf": "NU_CPF",
+      "tipo": "Varchar2(15) Numérico (11 dígitos)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Número do Cadastro de Pessoa Física (CPF) do paciente notificado [10].",
+      "observacoes_e_validacoes": "Quando preenchido, o sistema deve preencher Nome, Sexo, Data de Nascimento, Idade, Raça/Cor e Nome da Mãe automaticamente [11]."
+    },
+    {
+      "nome_campo_ficha": "8- Estrangeiro",
+      "nome_coluna_dbf": "ESTRANG",
+      "tipo": "Varchar(1) (1-Sim, 2-Não)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Informar se o paciente é estrangeiro [11].",
+      "observacoes_e_validacoes": "Se 'Sim', os campos CPF e CNS deixam de ser obrigatórios [11]."
+    },
+    {
+      "nome_campo_ficha": "9- Cartão Nacional de Saúde (CNS)",
+      "nome_coluna_dbf": "NU_CNS",
+      "tipo": "Varchar2(15) Numérico (14 dígitos)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Preencher com o número do Cartão Nacional de Saúde do paciente [11]."
+    },
+    {
+      "nome_campo_ficha": "10-Nome",
+      "nome_coluna_dbf": "NM_PACIENT",
+      "tipo": "Varchar2(70)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Nome completo do paciente (sem abreviações) [11, 12]."
+    },
+    {
+      "nome_campo_ficha": "11-Sexo",
+      "nome_coluna_dbf": "CS_SEXO",
+      "tipo": "Varchar2(1) (1-Masculino, 2-Feminino, 9-Ignorado)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Sexo do paciente [12]."
+    },
+    {
+      "nome_campo_ficha": "12-Data de nascimento",
+      "nome_coluna_dbf": "DT_NASC",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data de nascimento do paciente [12].",
+      "observacoes_e_validacoes": "A data deve ser menor ou igual à data dos primeiros sintomas [12]."
+    },
+    {
+      "nome_campo_ficha": "13-(ou) Idade",
+      "nome_coluna_dbf": "NU_IDADE_N",
+      "tipo": "Varchar2(3)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Idade informada pelo paciente quando não se sabe a data de nascimento. Na falta desse dado, é registrada a idade aparente [13].",
+      "observacoes_e_validacoes": "Se a data de nascimento for digitada, a idade é calculada automaticamente (intervalo entre a data de nascimento e a data dos primeiros sintomas) [13]. Idade deve ser menor ou igual a 150 [13]."
+    },
+    {
+      "nome_campo_ficha": "(ou) Tipo/Idade",
+      "nome_coluna_dbf": "TP_IDADE",
+      "tipo": "Varchar2(1) (1-Dia, 2-Mês, 3-Ano)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Indica a unidade da idade registrada (Dia, Mês ou Ano) [13].",
+      "observacoes_e_validacoes": "Calculado e preenchido automaticamente se a data de nascimento for digitada [13]. O tipo é definido com base na diferença de idade: 0 a 30 dias (Tipo=Dia), 1 a 11 meses (Tipo=Mês), ou maior ou igual a 12 meses (Tipo=Ano) [14]."
+    },
+    {
+      "nome_campo_ficha": "14-Gestante",
+      "nome_coluna_dbf": "CS_GESTANT",
+      "tipo": "Varchar2(1) (1º, 2º, 3º Trimestre, Ignorada, Não, Não se aplica, Ignorado)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Idade gestacional da paciente [15].",
+      "observacoes_e_validacoes": "Obrigatório se Sexo for Feminino [15]. Se Sexo for Masculino ou idade for <= 9 anos, é preenchido automaticamente com 'Não se aplica' (6) [15]. Se Feminino e idade > 9 anos, não pode ser 'Não se aplica' [15]."
+    },
+    {
+      "nome_campo_ficha": "15-Raça/Cor",
+      "nome_coluna_dbf": "CS_RACA",
+      "tipo": "Varchar2(2) (1-Branca, 2-Preta, 3-Amarela, 4-Parda, 5-Indígena, 9-Ignorado)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Cor ou raça declarada pelo paciente [16]. Parda inclui quem se declarou mulata, cabocla, cafuza, mameluca ou mestiça de preto com pessoa de outra cor ou raça [16]."
+    },
+    {
+      "nome_campo_ficha": "16-Se indígena, qual etnia?",
+      "nome_coluna_dbf": "CS_ETINIA",
+      "tipo": "Varchar2(4)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nome e código da etnia do paciente, quando indígena [16]. Utiliza Tabela do SIASI [16].",
+      "observacoes_e_validacoes": "Habilitado se o campo 15-Raça/Cor for igual a 5-Indígena [17]."
+    },
+    {
+      "nome_campo_ficha": "17- É membro de povo ou comunidade tradicional?",
+      "nome_coluna_dbf": "POV_CT",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Informar se o paciente for membro de algum povo ou comunidade tradicional [17]."
+    },
+    {
+      "nome_campo_ficha": "18- Se sim, qual?",
+      "nome_coluna_dbf": "TP_POV_CT",
+      "tipo": "Varchar2(100)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Informar o povo ou comunidade tradicional. Utiliza Tabela de Povos e Comunidades Tradicionais [17].",
+      "observacoes_e_validacoes": "Habilitado se o campo 17 for igual a 1- Sim [17]."
+    },
+    {
+      "nome_campo_ficha": "19-Escolaridade",
+      "nome_coluna_dbf": "CS_ESCOL_N",
+      "tipo": "Varchar2(1) (0-Sem escolaridade/Analfabeto a 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nível de escolaridade do paciente. Para fundamental e médio, deve ser considerada a última série ou ano concluído [18].",
+      "observacoes_e_validacoes": "Preenchido automaticamente com 'não se aplica' se idade for menor que 7 anos [18]. Se idade for maior que 7 anos, não pode ser preenchido com 'não se aplica' [18]."
+    },
+    {
+      "nome_campo_ficha": "20- Ocupação",
+      "nome_coluna_dbf": "PAC_COCBO ou PAC_DSCBO",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Ocupação profissional do paciente. Utiliza a Classificação Brasileira de Ocupações (CBO) [18]."
+    },
+    {
+      "nome_campo_ficha": "21-Nome da mãe",
+      "nome_coluna_dbf": "NM_MAE_PAC",
+      "tipo": "Varchar2(70)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nome completo da mãe do paciente (sem abreviações) [19]."
+    },
+    {
+      "nome_campo_ficha": "22-CEP (Residência)",
+      "nome_coluna_dbf": "NU_CEP",
+      "tipo": "Varchar2(8)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "CEP de residência do paciente [19].",
+      "observacoes_e_validacoes": "Validado a partir da tabela de CEP dos Correios [19]."
+    },
+    {
+      "nome_campo_ficha": "23-UF (Residência)",
+      "nome_coluna_dbf": "SG_UF",
+      "tipo": "Varchar2(2)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Unidade Federativa de residência do paciente [19]. Utiliza tabela IBGE [19].",
+      "observacoes_e_validacoes": "Obrigatório se o campo 31-País for Brasil [20]. Se o campo CEP for preenchido, a UF é preenchida automaticamente e desabilitada para edição [20]."
+    },
+    {
+      "nome_campo_ficha": "Regional de Saúde de Residência Código (IBGE)",
+      "nome_coluna_dbf": "ID_RG_RESI OU CO_RG_RESI",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Regional de Saúde onde está localizado o Município de residência do paciente [20]. Utiliza tabela IBGE [20].",
+      "observacoes_e_validacoes": "Preenchendo o nome da regional de saúde de residência, o código é preenchido automaticamente, e vice-versa [20]."
+    },
+    {
+      "nome_campo_ficha": "24-Município Código (IBGE) (Residência)",
+      "nome_coluna_dbf": "ID_MN_RESI OU CO_MUN_RES",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Município de residência do paciente [21]. Utiliza tabela IBGE [21].",
+      "observacoes_e_validacoes": "Obrigatório se o campo 31-País for Brasil [21]. Preenchido automaticamente se o CEP for informado [21]. Se o CEP não for preenchido, é habilitado após seleção da UF [21]."
+    },
+    {
+      "nome_campo_ficha": "25-Bairro",
+      "nome_coluna_dbf": "NM_BAIRRO",
+      "tipo": "Varchar2(72)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Bairro de residência do paciente [22]. Utiliza tabela Correios [22].",
+      "observacoes_e_validacoes": "Preenchido automaticamente pelo sistema se o campo CEP for preenchido [22]."
+    },
+    {
+      "nome_campo_ficha": "26-Logradouro (Rua, Avenida, etc.)",
+      "nome_coluna_dbf": "NM_LOGRADO",
+      "tipo": "Varchar2(50)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Logradouro (rua, avenida, quadra, travessa, etc.) do endereço de residência do paciente [22, 23]. Utiliza tabela Correios [22].",
+      "observacoes_e_validacoes": "Preenchido automaticamente pelo sistema se o campo CEP for preenchido [22]."
+    },
+    {
+      "nome_campo_ficha": "27-Nº (Logradouro)",
+      "nome_coluna_dbf": "NU_NUMERO",
+      "tipo": "Varchar2(8)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Número do logradouro (nº da casa ou do edifício) [23]."
+    },
+    {
+      "nome_campo_ficha": "28-Complemento (apto, casa, etc.)",
+      "nome_coluna_dbf": "NM_COMPLEM",
+      "tipo": "Varchar2(15)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Complemento do logradouro (bloco, apto, casa, etc.) [23]."
+    },
+    {
+      "nome_campo_ficha": "29-(DDD) Telefone",
+      "nome_coluna_dbf": "NU_DDD_TEL OU NU_TELEFON",
+      "tipo": "Varchar2(4)/Varchar2(10)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Código DDD e número de telefone para contato do paciente [23]."
+    },
+    {
+      "nome_campo_ficha": "30-Zona",
+      "nome_coluna_dbf": "CS_ZONA",
+      "tipo": "Varchar2(1) (1-Urbana, 2-Rural, 3-Periurbana, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Zona geográfica do endereço de residência do paciente [24]."
+    },
+    {
+      "nome_campo_ficha": "31-País (se residente fora do Brasil)",
+      "nome_coluna_dbf": "ID_PAIS OU CO_PAIS",
+      "tipo": "Varchar2(3)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "País de residência do paciente [24]. Utiliza tabela com código e nome dos Países [24].",
+      "observacoes_e_validacoes": "Preenchido automaticamente e desabilitado se CEP ou UF for selecionado [24]. Se for selecionado País diferente de Brasil, os campos 22 a 28 são desabilitados [24]."
+    },
+    {
+      "nome_campo_ficha": "32-Trata-se de caso nosocomial?",
+      "nome_coluna_dbf": "NOSOCOMIAL",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Caso de SRAG com infecção adquirida após internação [24].",
+      "observacoes_e_validacoes": "Se for 'Sim' (1), é permitido digitar data de início dos sintomas posterior à data de internação [25]."
+    },
+    {
+      "nome_campo_ficha": "33- Paciente trabalha ou tem contato direto com aves, suínos, ou outro animal?",
+      "nome_coluna_dbf": "AVE_SUINO",
+      "tipo": "Varchar2(1) (1-Sim, aves e/ou suínos; 2-Não, nenhum; 3- Sim, outros, qual; 9-ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente teve contato direto ou trabalha com aves, suínos ou outro animal? [25]."
+    },
+    {
+      "nome_campo_ficha": "33-Paciente trabalha ou tem contato direto com aves, suínos/Outro animal (especificar)",
+      "nome_coluna_dbf": "OUT_ANIM",
+      "tipo": "Varchar2(60)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Especificação do outro animal caso o paciente tenha tido contato direto ou trabalhe com ele [26].",
+      "observacoes_e_validacoes": "Habilitado se campo 33- Contato com outro animal = 3 (Outro) [26]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Febre",
+      "nome_coluna_dbf": "FEBRE",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou febre? [26]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Tosse",
+      "nome_coluna_dbf": "TOSSE",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou tosse? [26, 27]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Dor de Garganta",
+      "nome_coluna_dbf": "GARGANTA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou dor de garganta? [27]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Dispneia",
+      "nome_coluna_dbf": "DISPNEIA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou dispneia? [27]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Desconforto Respiratório",
+      "nome_coluna_dbf": "DESC_RESP",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou desconforto respiratório? [27]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Saturação O2< 95%",
+      "nome_coluna_dbf": "SATURACAO",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou saturação O2< 95%? [27]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Diarreia",
+      "nome_coluna_dbf": "DIARREIA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou diarreia? [28]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Vômito",
+      "nome_coluna_dbf": "VOMITO",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou vômito? [28]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Dor abdominal",
+      "nome_coluna_dbf": "DOR_ABD",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou dor abdominal? [28]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Fadiga",
+      "nome_coluna_dbf": "FADIGA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou fadiga? [28]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Perda do Olfato",
+      "nome_coluna_dbf": "PERD_OLFT",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou perda do olfato? [29]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Perda do Paladar",
+      "nome_coluna_dbf": "PERD_PALA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou perda do paladar? [29]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Outros",
+      "nome_coluna_dbf": "OUTRO_SIN",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresentou outro(s) sintoma(s)? [29]."
+    },
+    {
+      "nome_campo_ficha": "34-Sinais e Sintomas/Outros (Descrição)",
+      "nome_coluna_dbf": "OUTRO_DES",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Listar outros sinais e sintomas apresentados pelo paciente [30].",
+      "observacoes_e_validacoes": "Habilitado se selecionado categoria 1-Sim em Sinais e Sintomas/Outros [30]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco",
+      "nome_coluna_dbf": "FATOR_RISC",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente apresenta algum fator de risco [30]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Puérpera",
+      "nome_coluna_dbf": "PUERPERA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente é puérpera ou parturiente (mulher que pariu recentemente – até 45 dias do parto)? [30].",
+      "observacoes_e_validacoes": "Habilitado se selecionado no campo 8- Sexo Feminino (Nota: referência cruzada incorreta, deve ser campo 11) [30]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Doença Cardiovascular Crônica",
+      "nome_coluna_dbf": "CARDIOPATI",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Doença Cardiovascular Crônica? [31]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Doença Hematológica Crônica",
+      "nome_coluna_dbf": "HEMATOLOGI",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Doença Hematológica Crônica? [31]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Síndrome de Down",
+      "nome_coluna_dbf": "SIND_DOWN",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Síndrome de Down? [31]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Doença Hepática Crônica",
+      "nome_coluna_dbf": "HEPATICA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Doença Hepática Crônica? [31]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Asma",
+      "nome_coluna_dbf": "ASMA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Asma? [32]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Diabetes mellitus",
+      "nome_coluna_dbf": "DIABETES",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Diabetes mellitus? [32]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Doença Neurológica Crônica",
+      "nome_coluna_dbf": "NEUROLOGIC",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Doença Neurológica? [32]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Outra Pneumatopatia Crônica",
+      "nome_coluna_dbf": "PNEUMOPATI",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado [33])",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui outra pneumopatia crônica? [32, 33]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Imunodeficiência ou Imunodepressão",
+      "nome_coluna_dbf": "IMUNODEPRE",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Imunodeficiência ou Imunodepressão (diminuição da função do sistema imunológico)? [33]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Doença Renal Crônica",
+      "nome_coluna_dbf": "RENAL",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui Doença Renal Crônica? [33]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Obesidade",
+      "nome_coluna_dbf": "OBESIDADE",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui obesidade? [33]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Obesidade (Descrição IMC)",
+      "nome_coluna_dbf": "OBES_IMC",
+      "tipo": "Varchar2(3)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Valor do IMC (Índice de Massa Corporal) do paciente calculado pelo profissional de saúde [34].",
+      "observacoes_e_validacoes": "Habilitado se Obesidade = 1-Sim [34]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Tabagismo",
+      "nome_coluna_dbf": "TABAG",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente é tabagista? [34]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Outros",
+      "nome_coluna_dbf": "OUT_MORBI",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Paciente possui outro(s) fator(es) de risco? [34]."
+    },
+    {
+      "nome_campo_ficha": "35-Fatores de risco/ Outros (Descrição)",
+      "nome_coluna_dbf": "MORB_DESC",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Listar outro(s) fator(es) de risco do paciente [35].",
+      "observacoes_e_validacoes": "Habilitado se Fatores de risco/Outros = 1-Sim [35]."
+    },
+    {
+      "nome_campo_ficha": "36- Recebeu vacina COVID-19?",
+      "nome_coluna_dbf": "VACINA_COV",
+      "tipo": "Varchar(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Informar se o paciente recebeu vacina COVID-19, após verificar a documentação/caderneta [35].",
+      "observacoes_e_validacoes": "Pode haver integração com a Base Nacional de Vacinação [35]."
+    },
+    {
+      "nome_campo_ficha": "37- Data 1ª dose da vacina COVID-19",
+      "nome_coluna_dbf": "DOSE_1_COV",
+      "tipo": "Varchar(10) Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente recebeu a 1ª dose da vacina COVID-19 [35, 36].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [36]. Pode haver integração com a Base Nacional de Vacinação [36]."
+    },
+    {
+      "nome_campo_ficha": "37- Data 2ª dose da vacina COVID-19",
+      "nome_coluna_dbf": "DOSE_2_COV",
+      "tipo": "Varchar(10) Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente recebeu a 2ª dose da vacina COVID-19 [36].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [36]. Pode haver integração com a Base Nacional de Vacinação [36]."
+    },
+    {
+      "nome_campo_ficha": "37- Data da dose reforço da vacina COVID-19",
+      "nome_coluna_dbf": "DOSE_REF",
+      "tipo": "Varchar(10) Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente recebeu a dose reforço [37].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [37]. Pode haver integração com a Base Nacional de Vacinação [37]."
+    },
+    {
+      "nome_campo_ficha": "37- Data da 2ª dose reforço da vacina COVID-19",
+      "nome_coluna_dbf": "DOSE_2REF",
+      "tipo": "Varchar(10) Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente recebeu a 2ª dose reforço [37].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [37]. Pode haver integração com a Base Nacional de Vacinação [37]."
+    },
+    {
+      "nome_campo_ficha": "37- Data da dose adicional da vacina COVID-19",
+      "nome_coluna_dbf": "DOSE_ADIC",
+      "tipo": "Varchar(10) Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente recebeu a dose adicional da vacina COVID-19 [38].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [38]. Pode haver integração com a Base Nacional de Vacinação [38]."
+    },
+    {
+      "nome_campo_ficha": "37- Data dose reforço bivalente COVID-19",
+      "nome_coluna_dbf": "DOS_RE_BI",
+      "tipo": "Varchar(10) Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente recebeu a dose reforço bivalente COVID-19 [38].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [39]. Pode haver integração com a Base Nacional de Vacinação [39]."
+    },
+    {
+      "nome_campo_ficha": "38- Fabricante 1ª dose da vacina COVID-19",
+      "nome_coluna_dbf": "FAB_COV1",
+      "tipo": "Varchar(80)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o fabricante da vacina que o paciente recebeu na primeira dose [39].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [39]. Pode haver integração com a Base Nacional de Vacinação [39]."
+    },
+    {
+      "nome_campo_ficha": "38- Fabricante 2ª dose da vacina COVID-19",
+      "nome_coluna_dbf": "FAB_COV2",
+      "tipo": "Varchar(80)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o fabricante da vacina que o paciente recebeu na segunda dose [39].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [40]. Pode haver integração com a Base Nacional de Vacinação [40]."
+    },
+    {
+      "nome_campo_ficha": "38- Fabricante dose reforço da vacina COVID-19",
+      "nome_coluna_dbf": "FAB_COVRF",
+      "tipo": "Varchar(80)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o fabricante da vacina que o paciente recebeu na dose reforço [40].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [40]. Pode haver integração com a Base Nacional de Vacinação [40]."
+    },
+    {
+      "nome_campo_ficha": "38- Fabricante 2ª dose reforço da vacina COVID-19",
+      "nome_coluna_dbf": "FAB_COVRF2",
+      "tipo": "Varchar(80)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o fabricante da vacina que o paciente recebeu na 2ª dose reforço [41].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [41]. Pode haver integração com a Base Nacional de Vacinação [41]."
+    },
+    {
+      "nome_campo_ficha": "38- Fabricante dose adicional da vacina COVID-19",
+      "nome_coluna_dbf": "FAB_ADIC",
+      "tipo": "Varchar(80)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o fabricante da vacina que o paciente recebeu na dose adicional [41].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [41]. Pode haver integração com a Base Nacional de Vacinação [41]."
+    },
+    {
+      "nome_campo_ficha": "38- Fabricante dose reforço bivalente COVID-19",
+      "nome_coluna_dbf": "FAB_RE_BI",
+      "tipo": "Varchar(80)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o fabricante da vacina que o paciente recebeu na dose reforço bivalente [42].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [42]. Pode haver integração com a Base Nacional de Vacinação [42]."
+    },
+    {
+      "nome_campo_ficha": "39- Lote da vacina COVID-19: Lote 1ª Dose",
+      "nome_coluna_dbf": "LOTE_1_COV",
+      "tipo": "Varchar(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o Lote da 1ª dose da vacina COVID-19 [42].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [42]. Pode haver integração com a Base Nacional de Vacinação [42]."
+    },
+    {
+      "nome_campo_ficha": "39- Lote da vacina COVID-19: Lote 2ª Dose",
+      "nome_coluna_dbf": "LOTE_2_COV",
+      "tipo": "Varchar(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o Lote da 2ª dose da vacina COVID-19 [43].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [43]. Pode haver integração com a Base Nacional de Vacinação [43]."
+    },
+    {
+      "nome_campo_ficha": "39- Lote da vacina COVID-19: Lote dose reforço",
+      "nome_coluna_dbf": "LOTE_REF",
+      "tipo": "Varchar(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o Lote da dose reforço da vacina COVID-19 [43].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [43]. Pode haver integração com a Base Nacional de Vacinação [43]."
+    },
+    {
+      "nome_campo_ficha": "39- Lote da vacina COVID-19: Lote 2ª dose reforço",
+      "nome_coluna_dbf": "LOTE_REF2",
+      "tipo": "Varchar(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o Lote da 2ª dose reforço da vacina COVID-19 [44].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [44]. Pode haver integração com a Base Nacional de Vacinação [44]."
+    },
+    {
+      "nome_campo_ficha": "39- Lote da vacina COVID-19 Dose adicional",
+      "nome_coluna_dbf": "LOTE_ADIC",
+      "tipo": "Varchar(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o Lote da dose adicional da vacina COVID-19 [44, 45].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [45]. Pode haver integração com a Base Nacional de Vacinação [45]."
+    },
+    {
+      "nome_campo_ficha": "39- Lote da vacina COVID-19 Dose reforço bivalente",
+      "nome_coluna_dbf": "LOT_RE_BI",
+      "tipo": "Varchar(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o Lote da dose reforço bivalente da vacina COVID-19 [45].",
+      "observacoes_e_validacoes": "Habilitado se campo 36 = 1 [45]. Pode haver integração com a Base Nacional de Vacinação [45]."
+    },
+    {
+      "nome_campo_ficha": "39- Fonte dos dados/informação sobre a vacina COVID-19",
+      "nome_coluna_dbf": "FNT_IN_COV",
+      "tipo": "Varchar(1) (1- Manual, 2- Integração)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Preenchido de acordo com a fonte dos dados sobre a vacina COVID-19 (se foi digitada manualmente ou recuperada via integração com a Base Nacional de Vacinação) [46].",
+      "observacoes_e_validacoes": "Número gerado automaticamente pelo sistema [46]."
+    },
+    {
+      "nome_campo_ficha": "40-Recebeu vacina contra Gripe na última campanha?",
+      "nome_coluna_dbf": "VACINA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar se o paciente foi vacinado contra gripe na última campanha, após verificar a documentação / caderneta [46]."
+    },
+    {
+      "nome_campo_ficha": "41-Data da vacinação (Gripe)",
+      "nome_coluna_dbf": "DT_UT_DOSE",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da última dose de vacina contra gripe que o paciente tomou [46].",
+      "observacoes_e_validacoes": "Habilitado se campo 40 = 1 [47]. Data deve ser menor ou igual à data da digitação (data atual) [47]."
+    },
+    {
+      "nome_campo_ficha": "Se < 6 meses: a mãe recebeu a vacina?",
+      "nome_coluna_dbf": "MAE_VAC",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Se paciente < 6 meses, a mãe recebeu vacina? [47].",
+      "observacoes_e_validacoes": "Campo habilitado se a Idade do caso for < 6 meses [47]."
+    },
+    {
+      "nome_campo_ficha": "Se sim, data (Vacina Mãe)",
+      "nome_coluna_dbf": "DT_VAC_MAE",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Se a mãe recebeu vacina, qual a data? [47].",
+      "observacoes_e_validacoes": "Habilitado se campo 'Se < 6 meses: a mãe recebeu a vacina' for igual a 1 [48]. Data deve ser menor ou igual à data da digitação (data atual) [48]."
+    },
+    {
+      "nome_campo_ficha": "Se < 6 meses: a mãe amamenta a criança?",
+      "nome_coluna_dbf": "M_AMAMENTA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Se paciente < 6 meses, a mãe amamenta a criança? [48].",
+      "observacoes_e_validacoes": "Campo habilitado se a Idade do caso for < 6 meses [48]."
+    },
+    {
+      "nome_campo_ficha": "Se >= 6 meses e <= 8 anos: Data da dose única 1/1",
+      "nome_coluna_dbf": "DT_DOSEUNI",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da dose única para crianças vacinadas em campanhas de anos anteriores [48].",
+      "observacoes_e_validacoes": "Campo habilitado se a Idade do caso for >= 6 meses e <= 8 anos [48]."
+    },
+    {
+      "nome_campo_ficha": "Se >= 6 meses e <= 8 anos: Data da 1ª dose",
+      "nome_coluna_dbf": "DT_1_DOSE",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da 1ª dose para crianças vacinadas pela primeira vez [49].",
+      "observacoes_e_validacoes": "Campo habilitado se a Idade do caso for >= 6 meses e <= 8 anos [49]."
+    },
+    {
+      "nome_campo_ficha": "Se >= 6 meses e <= 8 anos: Data da 2ª dose",
+      "nome_coluna_dbf": "DT_2_DOSE",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da 2ª dose para crianças vacinadas pela primeira vez [49].",
+      "observacoes_e_validacoes": "Campo habilitado se a Idade do caso for >= 6 meses e <= 8 anos [49]."
+    },
+    {
+      "nome_campo_ficha": "42-Usou antiviral para gripe?",
+      "nome_coluna_dbf": "ANTIVIRAL",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Fez uso de antiviral para tratamento da doença (Gripe)? [50]."
+    },
+    {
+      "nome_campo_ficha": "43-Qual antiviral? (Gripe)",
+      "nome_coluna_dbf": "TP_ANTIVIR",
+      "tipo": "Varchar2(1) (1- Oseltamivir, 2- Zanamivir, 3- Outro, especifique)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Qual antiviral utilizado? [50].",
+      "observacoes_e_validacoes": "Habilitado se campo 42 = 1 [50]."
+    },
+    {
+      "nome_campo_ficha": "Qual antiviral /Outro, especifique (Gripe)",
+      "nome_coluna_dbf": "OUT_ANTIV",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Se o antiviral utilizado não foi Oseltamivir ou Zanamivir, informar qual foi utilizado [50, 51].",
+      "observacoes_e_validacoes": "Habilitado se campo 40 (Nota: referência cruzada incorreta, deve ser campo 43) = 3 [51]."
+    },
+    {
+      "nome_campo_ficha": "44-Data do início do tratamento (Gripe)",
+      "nome_coluna_dbf": "DT_ANTIVIR",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que foi iniciado o tratamento com o antiviral [51].",
+      "observacoes_e_validacoes": "Habilitado se campo 42 = 1 [51]. Data deve ser menor ou igual à data da digitação (atual) [51]."
+    },
+    {
+      "nome_campo_ficha": "45- Recebeu tratamento antiviral para covid-19?",
+      "nome_coluna_dbf": "TRAT_COV",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Fez uso de antiviral para tratamento de covid-19? [51]."
+    },
+    {
+      "nome_campo_ficha": "46- Qual antiviral? (COVID-19)",
+      "nome_coluna_dbf": "TIPO_TRAT",
+      "tipo": "Varchar2(1) (1-Nirmatrevir/ritonavir, 2-Molnupiravir, 3-Baricitinibe, 4-Outro, especifique)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar qual antiviral foi usado para tratamento de covid-19 [52].",
+      "observacoes_e_validacoes": "Habilitado se campo 45 = 1 [52]."
+    },
+    {
+      "nome_campo_ficha": "Qual antiviral /Outro, especifique (COVID-19)",
+      "nome_coluna_dbf": "OUT_TRAT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar qual antiviral foi utilizado se diferente das opções 1, 2 ou 3 [52].",
+      "observacoes_e_validacoes": "Habilitado se campo 46 = 4 [52]."
+    },
+    {
+      "nome_campo_ficha": "47- Data do início do tratamento (COVID-19)",
+      "nome_coluna_dbf": "DT_TRT_COV",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que foi iniciado o tratamento com o antiviral, para tratamento de covid-19 [53].",
+      "observacoes_e_validacoes": "Habilitado se campo 45 = 1 [53]. Data deve ser menor ou igual à data da digitação (atual) [53]."
+    },
+    {
+      "nome_campo_ficha": "48-Houve internação?",
+      "nome_coluna_dbf": "HOSPITAL",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "O paciente foi internado? [53].",
+      "observacoes_e_validacoes": "Se o campo não for igual a 1 – Sim, o sistema emitirá um aviso indicando que não atende à definição de caso [53]."
+    },
+    {
+      "nome_campo_ficha": "49-Data da internação por SRAG",
+      "nome_coluna_dbf": "DT_INTERNA",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Data em que o paciente foi hospitalizado [54].",
+      "observacoes_e_validacoes": "A data deve ser maior ou igual à Data de 1ºs sintomas (campo 2) e menor ou igual à data da digitação (atual) [54]."
+    },
+    {
+      "nome_campo_ficha": "50-UF de internação",
+      "nome_coluna_dbf": "SG_UF_INTE",
+      "tipo": "Varchar2(2)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Unidade Federativa de internação do paciente [54]. Utiliza tabela IBGE [54].",
+      "observacoes_e_validacoes": "Habilitado se campo 48 = 1 [54]."
+    },
+    {
+      "nome_campo_ficha": "Regional de Saúde de Internação Código (IBGE)",
+      "nome_coluna_dbf": "ID_RG_INTE OU CO_RG_INTE",
+      "tipo": "Varchar2(6)",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Regional de Saúde onde está localizado o Município de internação do paciente [55]. Utiliza tabela IBGE [55].",
+      "observacoes_e_validacoes": "Preenchendo o nome da regional de saúde de internação, o código é preenchido automaticamente, e vice-versa [55]."
+    },
+    {
+      "nome_campo_ficha": "51-Município de internação/ Código(IBGE)",
+      "nome_coluna_dbf": "ID_MN_INTE OU CO_MU_INTE",
+      "tipo": "Varchar2(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Município onde está localizada a Unidade de Saúde onde o paciente internou [55]. Utiliza tabela IBGE [55].",
+      "observacoes_e_validacoes": "Habilitado se campo 48 = 1 [55]."
+    },
+    {
+      "nome_campo_ficha": "52-Unidade de Saúde de internação/ Código CNES",
+      "nome_coluna_dbf": "ID_UN_INTE OU CO_UN_INTE",
+      "tipo": "Varchar2(20)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Unidade que realizou a internação do paciente [56]. Utiliza tabela CNES [56].",
+      "observacoes_e_validacoes": "Habilitado se campo 48 = 1 [56]."
+    },
+    {
+      "nome_campo_ficha": "53-Internado em UTI?",
+      "nome_coluna_dbf": "UTI",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "O paciente foi internado em UTI? [56]."
+    },
+    {
+      "nome_campo_ficha": "54-Data da entrada na UTI",
+      "nome_coluna_dbf": "DT_ENTUTI",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data de entrada do paciente na unidade de Terapia Intensiva (UTI) [57].",
+      "observacoes_e_validacoes": "Habilitado se campo 53 = 1 [57]. Data deve ser maior ou igual à Data de 1ºs sintomas da SRAG e menor ou igual à data da digitação (atual) [57]."
+    },
+    {
+      "nome_campo_ficha": "55-Data da saída da UTI",
+      "nome_coluna_dbf": "DT_SAIDUTI",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data em que o paciente saiu da Unidade de Terapia Intensiva (UTI) [57].",
+      "observacoes_e_validacoes": "Habilitado se campo 53 = 1 [57]. Data deve ser maior ou igual à Data da entrada na UTI (campo 54) e menor ou igual à data da digitação (atual) [57]."
+    },
+    {
+      "nome_campo_ficha": "56-Uso de suporte ventilatório?",
+      "nome_coluna_dbf": "SUPORT_VEN",
+      "tipo": "Varchar2(1) (1-Sim, invasivo; 2-Sim, não invasivo; 3-Não; 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "O paciente fez uso de suporte ventilatório? [58]."
+    },
+    {
+      "nome_campo_ficha": "57- Raio X de Tórax",
+      "nome_coluna_dbf": "RAIOX_RES",
+      "tipo": "Varchar2(1) (1-Normal, 2-Infiltrado intersticial, 3-Consolidação, 4-Misto, 5-Outro, 6-Não realizado, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar resultado de Raio X de Tórax [58]."
+    },
+    {
+      "nome_campo_ficha": "Raio X de Tórax/ Outro (especificar)",
+      "nome_coluna_dbf": "RAIOX_OUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o resultado do RX de tórax se selecionado a opção 5-Outro [58].",
+      "observacoes_e_validacoes": "Habilitado se campo 57 = 5 (Outro) [58]."
+    },
+    {
+      "nome_campo_ficha": "58-Data do Raio X",
+      "nome_coluna_dbf": "DT_RAIOX",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data do exame de Raio X de Tórax, se realizado [59].",
+      "observacoes_e_validacoes": "Habilitado se campo 57 for igual a 1, 2, 3, 4 ou 5 [59]."
+    },
+    {
+      "nome_campo_ficha": "59- Aspecto Tomografia",
+      "nome_coluna_dbf": "TOMO_RES",
+      "tipo": "Number(3) (1-Tipico covid-19, 2- Indeterminado, 3- Atípico, 4- Negativo para Pneumonia, 5- Outro, 6-Não realizado, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o resultado da tomografia [59]."
+    },
+    {
+      "nome_campo_ficha": "Aspecto Tomografia/Outro (especificar)",
+      "nome_coluna_dbf": "TOMO_OUT",
+      "tipo": "Varchar2(100)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Informar o resultado da tomografia se selecionado a opção 5-Outro [60].",
+      "observacoes_e_validacoes": "Habilitado se campo 53 (Nota: referência cruzada incorreta, deve ser campo 59) = 5 (Outro) [60]."
+    },
+    {
+      "nome_campo_ficha": "60- Data da Tomografia",
+      "nome_coluna_dbf": "DT_TOMO",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data do exame de tomografia, se realizado [60].",
+      "observacoes_e_validacoes": "Habilitado se campo 59 for igual a 1, 2, 3, 4 ou 5 [60]."
+    },
+    {
+      "nome_campo_ficha": "61-Coletou amostra?",
+      "nome_coluna_dbf": "AMOSTRA",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Foi realizado coleta de amostra para realização de teste diagnóstico? [60]."
+    },
+    {
+      "nome_campo_ficha": "62-Data da Coleta",
+      "nome_coluna_dbf": "DT_COLETA",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da coleta da amostra para realização do teste diagnóstico [61].",
+      "observacoes_e_validacoes": "Habilitado se campo 55 (Nota: referência cruzada incorreta, deve ser campo 61) = 1 [61]. Data deve ser maior ou igual à Data de 1ºs sintomas e menor ou igual à data da digitação (atual) [61]."
+    },
+    {
+      "nome_campo_ficha": "63-Tipo de amostra",
+      "nome_coluna_dbf": "TP_AMOSTRA",
+      "tipo": "Varchar2(30) (1-Secreção de Naso-orofaringe, 2-Lavado Broco-alveolar, 3-Tecido post-mortem, 4-Outra, qual?, 5-LCR, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Tipo da amostra clínica coletada para o teste diagnóstico [61, 62].",
+      "observacoes_e_validacoes": "Habilitado se campo 61 = 1 [62]."
+    },
+    {
+      "nome_campo_ficha": "Tipo de amostra/Outra",
+      "nome_coluna_dbf": "OUT_AMOST",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Descrição do tipo da amostra clínica, caso diferente das listadas [62].",
+      "observacoes_e_validacoes": "Campo habilitado se selecionado categoria 4-Outra, qual em Tipo de amostra [62]."
+    },
+    {
+      "nome_campo_ficha": "64-Nº da Requisição do GAL",
+      "nome_coluna_dbf": "REQUI_GAL",
+      "tipo": "N/A",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Número da requisição de exames gerado pelo sistema GAL [62]."
+    },
+    {
+      "nome_campo_ficha": "65- Tipo do Teste antigênico",
+      "nome_coluna_dbf": "TP_TES_AN",
+      "tipo": "Number(3) (1-Imunofluorescência (IF), 2- Teste rápido antigênico)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Tipo do teste antigênico que foi realizado [63]."
+    },
+    {
+      "nome_campo_ficha": "66- Data do resultado teste Antigênico",
+      "nome_coluna_dbf": "DT_RES_AN",
+      "tipo": "Data DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data do resultado do teste antigênico [63].",
+      "observacoes_e_validacoes": "Data deve ser maior ou igual à Data da Coleta (campo 62) [63]."
+    },
+    {
+      "nome_campo_ficha": "67- Resultado do Teste Antigênico",
+      "nome_coluna_dbf": "RES_AN",
+      "tipo": "Varchar2(1) (1-positivo, 2-Negativo, 3-Inconclusivo, 4-Não realizado, 5-Aguardando resultado, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico [63].",
+      "observacoes_e_validacoes": "Virará marcado com 5-Aguardando Resultado e estará habilitado se o campo 61 = 1 [63]."
+    },
+    {
+      "nome_campo_ficha": "68-Laboratório que realizou o Teste antigênico (Nome)",
+      "nome_coluna_dbf": "LAB_AN",
+      "tipo": "Varchar2(70)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Laboratório responsável pela liberação do resultado do teste antigênico [64].",
+      "observacoes_e_validacoes": "Habilitado se campo 67 for 1, 2, 3 ou 5 [64]. Preenchendo o nome, o código é preenchido automaticamente, ou vice-versa [64]."
+    },
+    {
+      "nome_campo_ficha": "68-Laboratório que realizou o Teste antigênico (Código CNES)",
+      "nome_coluna_dbf": "CO_LAB_AN",
+      "tipo": "Varchar2(7)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Código CNES do laboratório [65]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Positivo para Influenza?",
+      "nome_coluna_dbf": "POS_AN_FLU",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico que foi positivo para Influenza [65]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Se sim, qual Influenza?",
+      "nome_coluna_dbf": "TP_FLU_AN",
+      "tipo": "Varchar2(1) (1-Influenza A, 2-Influenza B)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, para o tipo de Influenza [65].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_FLU = 1 [66]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Positivo para outros vírus?",
+      "nome_coluna_dbf": "POS_AN_OUT",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, que foi positivo para outro vírus respiratório [66]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. SARS-CoV-2",
+      "nome_coluna_dbf": "AN_SARS2",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, para SARS-CoV-2 [66].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [66]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. VSR",
+      "nome_coluna_dbf": "AN_VSR",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, para VSR [67].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [67]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Parainfluenza 1",
+      "nome_coluna_dbf": "AN_PARA1",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, para Parainfluenza 1 [67].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [68]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Parainfluenza 2",
+      "nome_coluna_dbf": "AN_PARA2",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, Parainfluenza 2 [68].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [68]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Parainfluenza 3",
+      "nome_coluna_dbf": "AN_PARA3",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, Parainfluenza 3 [68].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [69]."
+    },
+    {
+      "nome_campo_ficha": "69-Agente etiológico – Teste Antigênico. Adenovírus",
+      "nome_coluna_dbf": "AN_ADENO",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, Adenovírus [69].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [69]."
+    },
+    {
+      "nome_campo_ficha": "69- Agente etiológico – Teste Antigênico. Outro vírus respiratório (Marcador)",
+      "nome_coluna_dbf": "AN_OUTRO",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do Teste Antigênico, Outro vírus respiratório [70].",
+      "observacoes_e_validacoes": "Habilitado se POS_AN_OUT = 1 [70]."
+    },
+    {
+      "nome_campo_ficha": "69- Agente etiológico – Teste Antigênico. Outro vírus respiratório (Descrição)",
+      "nome_coluna_dbf": "DS_AN_OUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nome do outro vírus respiratório identificado pelo Teste Antigênico [70].",
+      "observacoes_e_validacoes": "Habilitado se selecionado categoria 1-Sim em Sinais e Sintomas/Outros (Nota: a descrição faz referência a Outros Vírus Respiratórios do Antigênico) [70]."
+    },
+    {
+      "nome_campo_ficha": "70-Resultado da RT-PCR/outro método por Biologia Molecular",
+      "nome_coluna_dbf": "PCR_RESUL",
+      "tipo": "Varchar2(1) (1-Detectável, 2-Não Detectável, 3-Inconclusivo, 4-Não Realizado, 5-Aguardando Resultado, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado do teste de RT-PCR/outro método por Biologia Molecular [71].",
+      "observacoes_e_validacoes": "Virará marcado com 5-Aguardando Resultado e estará habilitado se o campo 61 = 1 [71]."
+    },
+    {
+      "nome_campo_ficha": "71-Data do Resultado RT-PCR/outro método por Biologia Molecular",
+      "nome_coluna_dbf": "DT_PCR",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data do Resultado RT-PCR/outro método por Biologia Molecular [71].",
+      "observacoes_e_validacoes": "Campo habilitado se PCR_RESUL for 1, 2 ou 3 [72]. Data deve ser maior ou igual à data da coleta (campo 62) [72]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Positivo para Influenza?",
+      "nome_coluna_dbf": "POS_PCRFLU",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado da RT-PCR foi positivo para Influenza [72]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Se sim, qual Influenza?",
+      "nome_coluna_dbf": "TP_FLU_PCR",
+      "tipo": "Varchar2(1) (1-Influenza A, 2-Influenza B)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para o tipo de Influenza [72].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCRFLU = 1 [73]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Se Influenza A, qual subtipo?",
+      "nome_coluna_dbf": "PCR_FLUASU",
+      "tipo": "Varchar2(1) (1-H1N1pdm09, 2-H3N2, 3-não subtipado, 4-não subtipável, 5-Inconclusivo, 6-Outro)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Subtipo para Influenza A [73].",
+      "observacoes_e_validacoes": "Habilitado se TP_FLU_PCR = 1 [73]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Se Influenza A, qual subtipo? Outro, especifique:",
+      "nome_coluna_dbf": "FLUASU_OUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Outro subtipo para Influenza A [74].",
+      "observacoes_e_validacoes": "Habilitado se PCR_FLUASU = 6 [74]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Se Influenza B, qual linhagem?",
+      "nome_coluna_dbf": "PCR_FLUBLI",
+      "tipo": "Varchar2(1) (1-Victoria, 2-Yamagatha, 3-Não realizado, 4-Inconclusivo, 5-Outro, especifique)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Linhagem para Influenza B [75].",
+      "observacoes_e_validacoes": "Habilitado se TP_FLU_PCR = 2 [75]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Se Influenza B, qual linhagem? Outro, especifique:",
+      "nome_coluna_dbf": "FLUBLI_OUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Outra linhagem para Influenza B [75].",
+      "observacoes_e_validacoes": "Habilitado se PCR_FLUBLI = 5 [75]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Positivo para outros vírus?",
+      "nome_coluna_dbf": "POS_PCROUT",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado da RT-PCR foi positivo para outro vírus respiratório [76]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: SARS-CoV-2",
+      "nome_coluna_dbf": "PCR_SARS2",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para SARS-CoV-2 [76].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [76]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: VSR",
+      "nome_coluna_dbf": "PCR_VSR",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para VSR [77].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [77]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Parainfluenza 1",
+      "nome_coluna_dbf": "PCR_PARA1",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Parainfluenza 1 [77].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [78]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Parainfluenza 2",
+      "nome_coluna_dbf": "PCR_PARA2",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Parainfluenza 2 [78].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [78]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Parainfluenza 3",
+      "nome_coluna_dbf": "PCR_PARA3",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Parainfluenza 3 [79].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [79]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Parainfluenza 4",
+      "nome_coluna_dbf": "PCR_PARA4",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Parainfluenza 4 [80].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [80]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Adenovírus",
+      "nome_coluna_dbf": "PCR_ADENO",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Adenovírus [80].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [80]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Metapneumovírus",
+      "nome_coluna_dbf": "PCR_METAP",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Metapneumovírus [81].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [81]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Bocavírus",
+      "nome_coluna_dbf": "PCR_BOCA",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Bocavírus [81].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [81]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Rinovírus",
+      "nome_coluna_dbf": "PCR_RINO",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Rinovírus [82].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [82]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Outro vírus respiratório, especifique: (Marcador)",
+      "nome_coluna_dbf": "PCR_OUTRO",
+      "tipo": "Varchar2(1) (1-marcado, Vazio-não marcado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado diagnóstico do RT-PCR para Outro vírus respiratório [82].",
+      "observacoes_e_validacoes": "Habilitado se POS_PCROUT = 1 [83]."
+    },
+    {
+      "nome_campo_ficha": "72- Agente etiológico – RT-PCR/outro método por Biologia Molecular: Outro vírus respiratório (Descrição)",
+      "nome_coluna_dbf": "DS_PCR_OUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nome do outro vírus respiratório identificado pelo RT-PCR [83].",
+      "observacoes_e_validacoes": "Habilitado se PCR_OUTRO estiver marcado [83]."
+    },
+    {
+      "nome_campo_ficha": "73-Laboratório que realizou RT-PCR/outro método por Biologia Molecular Código (CNES)",
+      "nome_coluna_dbf": "LAB_PCR OU CO_LAB_PCR",
+      "tipo": "Varchar2(7)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Laboratório responsável pela liberação do resultado do teste diagnóstico (RT-PCR) da amostra do paciente [84]. Utiliza tabela CNES [83, 84].",
+      "observacoes_e_validacoes": "Habilitado se PCR_RESUL for 1, 2 ou 3 [84]. Preenchendo o nome, o código é preenchido automaticamente, ou vice-versa [84]."
+    },
+    {
+      "nome_campo_ficha": "74- Tipo de Amostra Sorológica para SARS-Cov-2",
+      "nome_coluna_dbf": "TP_AM_SOR",
+      "tipo": "Number(3) (1- Sangue/plasma/soro, 2-Outra, qual?, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Tipo de amostra sorológica que foi coletada [85]."
+    },
+    {
+      "nome_campo_ficha": "Tipo de Amostra Sorológica para SARS-Cov-2/Outra, qual?",
+      "nome_coluna_dbf": "SOR_OUT",
+      "tipo": "N/A",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Descrição do tipo da amostra clínica, caso diferente das listadas na categoria um (1) do campo [85].",
+      "observacoes_e_validacoes": "Campo habilitado se selecionado categoria 2-Outra, qual? em Tipo de Amostra Sorológica [85]."
+    },
+    {
+      "nome_campo_ficha": "75- Data da coleta (Sorologia)",
+      "nome_coluna_dbf": "DT_CO_SOR",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da coleta do material para diagnóstico por Sorologia [86].",
+      "observacoes_e_validacoes": "Habilitado se campo 61 = 1 [86]. Data deve ser maior ou igual à Data de 1ºs sintomas e menor ou igual à data da digitação (atual) [86]."
+    },
+    {
+      "nome_campo_ficha": "76- Tipo de Sorologia para SARS-Cov-2",
+      "nome_coluna_dbf": "TP_SOR",
+      "tipo": "Number(3) (1-Teste rápido, 2-Elisa, 3-Quimiluminescência, 4- Outro, qual)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Tipo do Teste Sorológico que foi realizado [86]."
+    },
+    {
+      "nome_campo_ficha": "76- Tipo de Sorologia para SARS-Cov-2 (Descrição de Outro Tipo)",
+      "nome_coluna_dbf": "OUT_SOR",
+      "tipo": "Varchar2(100)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Descrição do tipo de Teste Sorológico [87].",
+      "observacoes_e_validacoes": "Campo habilitado se selecionado categoria 4-Outro, qual? em Tipo de Sorologia [87]."
+    },
+    {
+      "nome_campo_ficha": "76- Resultado do Teste Sorológico para SARS-CoV-2: IgG",
+      "nome_coluna_dbf": "RES_IGG",
+      "tipo": "Varchar2(1)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado da Sorologia para SARS-CoV-2 (IgG) [87]."
+    },
+    {
+      "nome_campo_ficha": "76- Resultado do Teste Sorológico para SARS-CoV-2: IgM",
+      "nome_coluna_dbf": "RES_IGM",
+      "tipo": "Varchar2(1)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado da Sorologia para SARS-CoV-2 (IgM) [87]."
+    },
+    {
+      "nome_campo_ficha": "76- Resultado do Teste Sorológico para SARS-CoV-2: IgA",
+      "nome_coluna_dbf": "RES_IGA",
+      "tipo": "Varchar2(1)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Resultado da Sorologia para SARS-CoV-2 (IgA) [88]."
+    },
+    {
+      "nome_campo_ficha": "77- Data do Resultado (Sorologia)",
+      "nome_coluna_dbf": "DT_RES",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data do Resultado do Teste Sorológico [88].",
+      "observacoes_e_validacoes": "Data deve ser maior ou igual à Data da Coleta (campo 75) [88]."
+    },
+    {
+      "nome_campo_ficha": "78- Faz parte de uma cadeia de surto de SG?",
+      "nome_coluna_dbf": "SURTO_SG",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "O caso faz parte de uma cadeia de surto de SG [89]."
+    },
+    {
+      "nome_campo_ficha": "79- É um caso de co-detecção?",
+      "nome_coluna_dbf": "CO-DETEC",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "O caso trata-se de co-detecção (identificação de dois tipos de vírus ao mesmo tempo) [89]."
+    },
+    {
+      "nome_campo_ficha": "80-Classificação final do caso",
+      "nome_coluna_dbf": "CLASSI_FIN",
+      "tipo": "Varchar2(1) (1-SRAG por influenza, 2-SRAG por outro vírus respiratório, 3-SRAG por outro agente etiológico, 4-SRAG não especificado, 5-SRAG por covid-19)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Diagnóstico final do caso [89].",
+      "observacoes_e_validacoes": "Se houver resultados divergentes entre as metodologias laboratoriais, deve-se priorizar o resultado do RT-PCR [90]."
+    },
+    {
+      "nome_campo_ficha": "80-Classificação final do caso 3-SRAG por outro agente etiológico, qual:",
+      "nome_coluna_dbf": "CLASSI_OUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Descrição de qual outro agente etiológico foi identificado [90].",
+      "observacoes_e_validacoes": "Habilitado se CLASSI_FIN = 3 [90]."
+    },
+    {
+      "nome_campo_ficha": "81–Critério de Encerramento",
+      "nome_coluna_dbf": "CRITERIO",
+      "tipo": "Varchar2(1) (1. Laboratorial, 2. Clínico Epidemiológico, 3. Clínico, 4. Clínico Imagem)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Indicar qual o critério de confirmação [90].",
+      "observacoes_e_validacoes": "Critérios 3 e 4 não são mais considerados para SRAG por covid-19 desde 31/10/2022. O critério 4 não é utilizado para encerramento de SRAG por Influenza, outros vírus respiratórios, outro agente etiológico e SRAG não especificado [90, 91]."
+    },
+    {
+      "nome_campo_ficha": "82–Evolução do caso",
+      "nome_coluna_dbf": "EVOLUCAO",
+      "tipo": "Varchar2(1) (1-Cura, 2-Óbito, 3- Óbito por outras causas, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Evolução do caso [91]."
+    },
+    {
+      "nome_campo_ficha": "83–Data da alta ou óbito",
+      "nome_coluna_dbf": "DT_EVOLUCA",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data da alta ou óbito [91].",
+      "observacoes_e_validacoes": "Habilitado se EVOLUCAO = 1 ou 2 [92]. Data deve ser maior ou igual à data dos primeiros sintomas e menor ou igual à data da digitação (atual) [92]."
+    },
+    {
+      "nome_campo_ficha": "84-Data do Encerramento",
+      "nome_coluna_dbf": "DT_ENCERRA",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Obrigatório",
+      "descricao_completa": "Data do encerramento do caso [92].",
+      "observacoes_e_validacoes": "Obrigatório se CLASSI_FIN estiver preenchido [92]. Data deve ser maior ou igual à data do preenchimento e menor ou igual à data da digitação (atual) [92]."
+    },
+    {
+      "nome_campo_ficha": "85- Número D.O",
+      "nome_coluna_dbf": "NU_DO",
+      "tipo": "N/A",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Número da Declaração de Óbito [92].",
+      "observacoes_e_validacoes": "Habilitado se EVOLUCAO = 2 ou 3 [92]."
+    },
+    {
+      "nome_campo_ficha": "86-Observações",
+      "nome_coluna_dbf": "OBSERVA",
+      "tipo": "Varchar2(999)",
+      "categoria_campo": "Opcional",
+      "descricao_completa": "Outras observações sobre o paciente consideradas pertinentes [92]."
+    },
+    {
+      "nome_campo_ficha": "87-Profissional de Saúde Responsável",
+      "nome_coluna_dbf": "NOME_PROF",
+      "tipo": "Varchar2(60)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nome completo do profissional de saúde (sem abreviações) responsável pela notificação [93]."
+    },
+    {
+      "nome_campo_ficha": "88-Registro Conselho/Matrícula",
+      "nome_coluna_dbf": "REG_PROF",
+      "tipo": "Varchar2(15)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Número do conselho ou matrícula do profissional de saúde responsável pela notificação (Ex: CRM/RJ 1234) [93]."
+    },
+    {
+      "nome_campo_ficha": "Data da digitação",
+      "nome_coluna_dbf": "DT_DIGITA",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Interno",
+      "descricao_completa": "Data de inclusão do registro no sistema [93]. Não é a data de preenchimento manual da ficha e não é atualizada se houver alterações posteriores de dados [94].",
+      "observacoes_e_validacoes": "Preenchido automaticamente pelo sistema [93]."
+    },
+    {
+      "nome_campo_ficha": "89- Designação da variante (OMS)",
+      "nome_coluna_dbf": "VG_OMS",
+      "tipo": "Varchar2(1) (1-Ômicron, 2-Delta, 3-Alfa, 4-Beta, 5-Gama, 6-Recombinante, 7-Outra, especifique)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Denominação da variante identificada de acordo com a designação da Organização Mundial da Saúde (OMS) [94]."
+    },
+    {
+      "nome_campo_ficha": "89- Designação da variante (OMS): Outra, especifique:",
+      "nome_coluna_dbf": "VG_OMSOUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Denominação de novas variantes, que ainda não constam na relação disponível [95]."
+    },
+    {
+      "nome_campo_ficha": "90- Linhagem da variante",
+      "nome_coluna_dbf": "VG_LIN",
+      "tipo": "Varchar2(15)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Especificação da linhagem identificada no resultado do sequenciamento genômico [95].",
+      "observacoes_e_validacoes": "Campo de preenchimento obrigatório se o campo 89 for preenchido [95]."
+    },
+    {
+      "nome_campo_ficha": "91- Método laboratorial mais recente",
+      "nome_coluna_dbf": "VG_MET",
+      "tipo": "Varchar2(1) (1- Sequenciamento genômico completo, 2- Sequenciamento genômico parcial, 3. RT-PCR em tempo real de inferência, 4-Outro, especifique)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Metodologia laboratorial que foi realizada mais recente [96]."
+    },
+    {
+      "nome_campo_ficha": "91- Método laboratorial mais recente: Outro, especifique",
+      "nome_coluna_dbf": "VG_METOUT",
+      "tipo": "Varchar2(30)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Especificação de outro método laboratorial mais recente [96].",
+      "observacoes_e_validacoes": "Habilitado se VG_MET = 4 [96]."
+    },
+    {
+      "nome_campo_ficha": "92- Nome do laboratório (Vigilância Genômica)",
+      "nome_coluna_dbf": "VG_LAB",
+      "tipo": "Varchar2(70)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Laboratório responsável pela liberação do resultado do sequenciamento da amostra do paciente [96]."
+    },
+    {
+      "nome_campo_ficha": "93- Código (CNES) do laboratório (Vigilância Genômica)",
+      "nome_coluna_dbf": "VG_CODLAB",
+      "tipo": "Varchar2(7)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Código Cadastro Nacional de Estabelecimento de Saúde (CNES) [97]."
+    },
+    {
+      "nome_campo_ficha": "94- Data do resultado (Vigilância Genômica)",
+      "nome_coluna_dbf": "VG_DTRES",
+      "tipo": "Date DD/MM/AAAA",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Data do resultado da vigilância genômica [97]."
+    },
+    {
+      "nome_campo_ficha": "95- Encerramento do caso (para VOC, VOI ou VUM)",
+      "nome_coluna_dbf": "VG_ENC",
+      "tipo": "Varchar2(1) (1- Confirmado por Sequenciamento genômico completo; 2- Provável por Sequenciamento genômico parcial; 3- Sugestivo por RT-PCR de inferência; 4- Sugestivo por vínculo epidemiológico; 5- Descartado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Encerramento do caso conforme orientações na Nota Técnica (NT) 1.129/2021 [97, 98].",
+      "observacoes_e_validacoes": "Campo de preenchimento obrigatório se o campo 89 for preenchido [98]."
+    },
+    {
+      "nome_campo_ficha": "96- Possível caso de reinfecção por covid-19?",
+      "nome_coluna_dbf": "VG_REINF",
+      "tipo": "Varchar2(1) (1-Sim, 2-Não, 9-Ignorado)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Possível caso de reinfecção (paciente com registro anterior positivo para covid-19, com intervalo maior ou igual a 90 dias) [98]."
+    },
+    {
+      "nome_campo_ficha": "97- Profissional responsável pelo preenchimento (Vigilância Genômica)",
+      "nome_coluna_dbf": "VG_PROF",
+      "tipo": "Varchar2(60)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Nome completo do profissional de saúde (sem abreviações) responsável pelo preenchimento das informações de Vigilância Genômica Epidemiológica e Reinfecção [98]."
+    },
+    {
+      "nome_campo_ficha": "98- Estabelecimento responsável pelo preenchimento",
+      "nome_coluna_dbf": "VG_EST",
+      "tipo": "Varchar2(60)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Estabelecimento responsável pelo preenchimento da informação [99].",
+      "observacoes_e_validacoes": "Campo de preenchimento obrigatório se o campo 89 for preenchido [99]."
+    },
+    {
+      "nome_campo_ficha": "98- Código (CNES) do Estabelecimento responsável pelo preenchimento",
+      "nome_coluna_dbf": "VG_CODDEST",
+      "tipo": "Varchar2(7)",
+      "categoria_campo": "Essencial",
+      "descricao_completa": "Código Cadastro Nacional de Estabelecimento de Saúde (CNES) do estabelecimento responsável pelo preenchimento [99]."
+    }
+  ]
+}

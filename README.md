@@ -83,7 +83,7 @@ Localizado em `src/intelligence/`. Implementa:
 │   ├── settings.py           # Gerenciamento de caminhos e chaves
 │   └── prompts.py            # Engenharia de Prompts (System Messages)
 │
-├── data/                     # Armazenamento Local (Ignorado no Git)
+├── data/                     # Armazenamento Local
 │   ├── srag_data.db          # Banco de dados SQLite gerado
 │   └── dicionario_dados.json # Metadados para tradução de colunas
 │

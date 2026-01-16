@@ -17,7 +17,6 @@ __pycache__/
 # Dados e Bancos de Dados
 data/*.db
 data/*.parquet
-data/*.json
 
 # Imagens
 img/*.png
